@@ -25,6 +25,8 @@ import { Route as AuthenticatedDashboardProfileRouteImport } from './routes/_aut
 import { Route as AuthenticatedDashboardLearningRouteImport } from './routes/_authenticated/dashboard.learning'
 import { Route as AuthenticatedDashboardAssistantRouteImport } from './routes/_authenticated/dashboard.assistant'
 import { Route as AuthenticatedAdminUsersRouteImport } from './routes/_authenticated/admin.users'
+import { Route as AuthenticatedAdminReportsRouteImport } from './routes/_authenticated/admin.reports'
+import { Route as AuthenticatedAdminCsvDetectionRouteImport } from './routes/_authenticated/admin.csv-detection'
 import { Route as AuthenticatedAdminAnalyticsRouteImport } from './routes/_authenticated/admin.analytics'
 import { Route as AuthenticatedAdminAlertsRouteImport } from './routes/_authenticated/admin.alerts'
 
@@ -114,6 +116,18 @@ const AuthenticatedAdminUsersRoute = AuthenticatedAdminUsersRouteImport.update({
   path: '/users',
   getParentRoute: () => AuthenticatedAdminRoute,
 } as any)
+const AuthenticatedAdminReportsRoute =
+  AuthenticatedAdminReportsRouteImport.update({
+    id: '/reports',
+    path: '/reports',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminCsvDetectionRoute =
+  AuthenticatedAdminCsvDetectionRouteImport.update({
+    id: '/csv-detection',
+    path: '/csv-detection',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const AuthenticatedAdminAnalyticsRoute =
   AuthenticatedAdminAnalyticsRouteImport.update({
     id: '/analytics',
@@ -136,6 +150,8 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof AuthenticatedDashboardRouteWithChildren
   '/admin/alerts': typeof AuthenticatedAdminAlertsRoute
   '/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
+  '/admin/csv-detection': typeof AuthenticatedAdminCsvDetectionRoute
+  '/admin/reports': typeof AuthenticatedAdminReportsRoute
   '/admin/users': typeof AuthenticatedAdminUsersRoute
   '/dashboard/assistant': typeof AuthenticatedDashboardAssistantRoute
   '/dashboard/learning': typeof AuthenticatedDashboardLearningRoute
@@ -153,6 +169,8 @@ export interface FileRoutesByTo {
   '/signup': typeof SignupRoute
   '/admin/alerts': typeof AuthenticatedAdminAlertsRoute
   '/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
+  '/admin/csv-detection': typeof AuthenticatedAdminCsvDetectionRoute
+  '/admin/reports': typeof AuthenticatedAdminReportsRoute
   '/admin/users': typeof AuthenticatedAdminUsersRoute
   '/dashboard/assistant': typeof AuthenticatedDashboardAssistantRoute
   '/dashboard/learning': typeof AuthenticatedDashboardLearningRoute
@@ -174,6 +192,8 @@ export interface FileRoutesById {
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRouteWithChildren
   '/_authenticated/admin/alerts': typeof AuthenticatedAdminAlertsRoute
   '/_authenticated/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
+  '/_authenticated/admin/csv-detection': typeof AuthenticatedAdminCsvDetectionRoute
+  '/_authenticated/admin/reports': typeof AuthenticatedAdminReportsRoute
   '/_authenticated/admin/users': typeof AuthenticatedAdminUsersRoute
   '/_authenticated/dashboard/assistant': typeof AuthenticatedDashboardAssistantRoute
   '/_authenticated/dashboard/learning': typeof AuthenticatedDashboardLearningRoute
@@ -195,6 +215,8 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/admin/alerts'
     | '/admin/analytics'
+    | '/admin/csv-detection'
+    | '/admin/reports'
     | '/admin/users'
     | '/dashboard/assistant'
     | '/dashboard/learning'
@@ -212,6 +234,8 @@ export interface FileRouteTypes {
     | '/signup'
     | '/admin/alerts'
     | '/admin/analytics'
+    | '/admin/csv-detection'
+    | '/admin/reports'
     | '/admin/users'
     | '/dashboard/assistant'
     | '/dashboard/learning'
@@ -232,6 +256,8 @@ export interface FileRouteTypes {
     | '/_authenticated/dashboard'
     | '/_authenticated/admin/alerts'
     | '/_authenticated/admin/analytics'
+    | '/_authenticated/admin/csv-detection'
+    | '/_authenticated/admin/reports'
     | '/_authenticated/admin/users'
     | '/_authenticated/dashboard/assistant'
     | '/_authenticated/dashboard/learning'
@@ -365,6 +391,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminUsersRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/reports': {
+      id: '/_authenticated/admin/reports'
+      path: '/reports'
+      fullPath: '/admin/reports'
+      preLoaderRoute: typeof AuthenticatedAdminReportsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/csv-detection': {
+      id: '/_authenticated/admin/csv-detection'
+      path: '/csv-detection'
+      fullPath: '/admin/csv-detection'
+      preLoaderRoute: typeof AuthenticatedAdminCsvDetectionRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/admin/analytics': {
       id: '/_authenticated/admin/analytics'
       path: '/analytics'
@@ -385,6 +425,8 @@ declare module '@tanstack/react-router' {
 interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminAlertsRoute: typeof AuthenticatedAdminAlertsRoute
   AuthenticatedAdminAnalyticsRoute: typeof AuthenticatedAdminAnalyticsRoute
+  AuthenticatedAdminCsvDetectionRoute: typeof AuthenticatedAdminCsvDetectionRoute
+  AuthenticatedAdminReportsRoute: typeof AuthenticatedAdminReportsRoute
   AuthenticatedAdminUsersRoute: typeof AuthenticatedAdminUsersRoute
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
 }
@@ -392,6 +434,8 @@ interface AuthenticatedAdminRouteChildren {
 const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
   AuthenticatedAdminAlertsRoute: AuthenticatedAdminAlertsRoute,
   AuthenticatedAdminAnalyticsRoute: AuthenticatedAdminAnalyticsRoute,
+  AuthenticatedAdminCsvDetectionRoute: AuthenticatedAdminCsvDetectionRoute,
+  AuthenticatedAdminReportsRoute: AuthenticatedAdminReportsRoute,
   AuthenticatedAdminUsersRoute: AuthenticatedAdminUsersRoute,
   AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
 }
